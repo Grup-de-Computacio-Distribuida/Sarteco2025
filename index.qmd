@@ -1,0 +1,551 @@
+---
+title: "Containerized Distributed Computing for Rapid AI Inference"
+subtitle: "A Case Study in Provincial-Scale Data Efficiency" 
+author:
+  - name: Didac Floresna
+    affiliation: University of Lleida
+  - name: Jordi Vilaplana
+    affiliation: University of Lleida
+  - name: Jordi Mateo
+    affiliation: University of Lleida
+logo: "logo.png"
+bibliography: references.bib
+format: 
+  revealjs:
+    #theme: slides.scss
+    transition: fade
+    slide-number: true
+    incremental: true 
+    chalkboard: true
+    toc: true
+    toc-depth: 1
+editor: visual
+execute:
+  freeze: auto
+  echo: true
+mermaid:
+      theme: neutral
+---
+
+## Introduction {.smaller}
+
+## Motivation {.smaller}
+
+## Problem Statement {.smaller}
+
+::: columns
+::: {.column width="30%"}
+
+::: {.callout-tip title="Goal"}
+**Analyze associations**: *Medication* and *cancer* type effects on patient survival (protective or harmful).
+:::
+
+:::
+::: {.column width="35%"}
+
+::: {.callout-warning title="Challenge"}
+Analyzing **79,931** combinations of medications and cancer types from *2007-2019*.
+:::
+
+:::
+::: {.column width="35%"}
+
+::: {.callout-important title="Inital Approach"}
+A *single machine* would require **61 days** to complete this analysis, with each combination consuming **66 seconds**.
+:::
+
+:::
+:::
+
+
+![](figures/original.png)
+
+
+## Objectives {.smaller}
+
+## Profiling {.smaller}
+
+::: columns
+
+::: {.column width="35%"}
+::: {.callout-tip title="Goal"}
+- Identify **bottlenecks**
+- Identify **inefficiencies**
+- Propose **optimizations**
+:::
+:::
+  
+::: {.column width="40%"}
+::: {.callout-important title="Findings"}
+- Data not retrieved in a **single** query  
+- **Join-like**  applied on a *non-relational DB*  
+- Queries misaligned with schema structure  
+:::
+:::
+  
+::: {.column width="25%"}
+::: {.callout-note title="Proposals"}
+- Schema redesign based on **query** access patterns.
+:::
+
+:::
+:::
+
+::: columns
+
+::: {.column width="33%"}
+#### Yearly Schema 
+```{.json code-line-numbers="false"}
+{
+  "expositions": {
+    "2017": {
+      "J01FA09": 100,
+      "J01FA10": 200
+    },
+    "2018": {
+      "J01FA09": 150,
+      "J01FA10": 250
+    },..
+  }
+}
+```
+:::
+
+::: {.column width="33%"}
+#### ATC Code Schema
+
+```{.json code-line-numbers="false"}
+{
+  "expositions": {
+    "J01FA09": {
+      "2017": 100,
+      "2018": 150
+    },
+    "J01FA10": {
+      "2017": 200,
+      "2018": 250
+    },...
+  }
+}
+```
+:::
+
+::: {.column width="33%"}
+#### Flattened Schema
+
+```{.json code-line-numbers="false"}
+{
+  "expositions": [
+    { "atc": "J01FA09", 
+      "year": 2017, 
+      "dose": 100 },
+    { "atc": "J01FA09", 
+      "year": 2018, 
+      "dose": 150 },
+    ...
+  ]
+}
+```
+:::
+
+:::
+
+## Data schema impact {.smaller}
+
+::: columns
+::: {.column width="50%"}
+
+![](figures/db_sizes.png)
+
+:::
+::: {.column width="50%"}
+
+![](figures/query_time.png)
+
+:::
+:::
+
+::: {.callout-tip title="Observation"}
+Proposed solutions **reduce query time** (at the cost of disk space for indexes). However, *deserialization time* **increases** across all proposals.
+:::
+
+::: {.callout-important title="Next Steps"}
+How can we simultaneously minimize deserialization time and reduce query execution?
+:::
+
+## Deserialization {.smaller}
+
+::: columns
+::: {.column width="60%"}
+
+| Schema     | Engine       | Size   | Time   | RAM     |
+|------------|--------------|--------|--------|----------|
+| Flat Dict  | PyMongo      | 84 MB  | 1.3 s  | 88 MB   |
+| Denormal.  | PyMongo      | 192 MB | 17.0 s | 5.5 GB  |
+| Denormal.  | PyMongoArrow | 192 MB | 29.6 s | 2.8 GB  |
+
+
+::: {.callout-important title="Findings"}
+- PyMongo returns Python dictionaries → slow for large result sets  
+- PyMongoArrow improves typing, but still memory-heavy  
+- Optimal performance requires **columnar layout with primitive types**
+:::
+
+:::
+::: {.column width="40%"}
+
+::::{.callout-tip title="Solution"}
+- **Solution**: split into 3 DataFrames:  
+  `patients`, `expositions`, `cancers`
+:::
+
+![](figures/split_df.png)
+
+:::
+:::
+
+## Memory Optimization {.smaller}
+
+
+::: columns
+::: {.column width="50%"}
+
+::: {.callout-important title="Findings"}
+- Most patient features are **invariant** across combinations (age, BMI, diabetes…)  
+- The shape of the DataFrame impacts the compression.
+- Sorting the data and downcasting types can significantly reduce memory space.
+:::
+
+![](figures/all_benchmarks.png)
+
+
+
+:::
+::: {.column width="50%"}
+
+::: {.callout-note title="Proposal"}
+- Precompute static features. 
+- Load data once into memory.
+- Save shared data in **Apache Parquet**:
+  - Fast to read  
+  - Compact (<45 MB)  
+- Minimize queries to the database.  
+:::
+
+![](figures/parquet_benchmark_df.png)
+
+:::
+:::
+
+## Data Ingestion Mechanism {.smaller}
+
+::: columns
+::: {.column width="35%"}
+
+::: {.callout-tip title="Mechanism"}
+1. Precalculate Dataframes
+2. Read the Dataframes
+3. **CSV** generation with features and the event column
+4. **CSV** reading and data preprocessing
+5. **COXPH** analysis (using a file as stdout)
+6. Read and parse the results
+7. Save structured results for later queries
+:::
+
+::: {.callout-important title="Improvements"}
+
+- Query-driven -> Reduce time to get data.
+- Precalculate shared data -> Avoid repeated queries.
+- Use Parquet files -> Efficient storage and fast access.
+:::
+
+:::
+::: {.column width="65%"}
+
+![](figures/architecture-1.png)
+
+:::
+:::
+
+
+## Vectorized Computation {.smaller}
+
+Exploit **SIMD architectures** and **vectorized operations**, inspired by @baziotisDiasDynamicRewriting2024.
+
+::: columns
+::: {.column width="70%"}
+
+#### Non-index-aware
+
+```{.python  code-line-numbers="false"}
+cancers_df[cancers_df["loc3"] == "C19"]
+```
+
+#### Index-aware
+
+```{.python  code-line-numbers="false"}
+cancers_df.loc[(slice(None), "C19"), :]
+```
+
+:::
+::: {.column width="30%"}
+
+:::{.callout-note title="Results"}
+- Non-index-aware: **1.86 ms**
+- Index-aware: **247 μs**
+:::
+
+:::
+:::
+
+####
+
+::: columns
+::: {.column width="70%"}
+
+#### Using `isin()`
+```{.python  code-line-numbers="false"}
+cox_df["has_cancer"] = cox_df.index.isin(with_cancer_df.index)
+```
+
+#### Using `loc` with prefill
+```{.python  code-line-numbers="false"}
+cox_df["has_cancer"] = False
+cox_df.loc[with_cancer_df.index, "has_cancer"] = True
+```
+
+:::
+::: {.column width="30%"}
+
+:::{.callout-note title="Results"}
+- Using `isin()`: **3.25 ms**
+- Using `loc` with prefill: **464 μs**
+:::
+
+:::
+:::
+
+::: {.callout-tip title="Summary of Optimizations"}
+The total reduction in time for the second step of the data ingestion is around **52 ms** per combination. For 79,931 combinations, this results in a total time of **~4.1 hours**.
+:::
+
+
+## Eliminating Communications {.smaller}
+
+::: columns
+::: {.column width="50%"}
+
+::: {.callout-important title="Problem"}
+Disk I/O for inter-process communication (IPC) with R is a significant bottleneck. Traditional methods like pipes, sockets, shared memory, or message queues introduce considerable overhead.
+:::
+
+::: {.callout-warning title="Proposal"}
+Can we eliminate this IPC by performing the CoxPH analysis directly in Python?
+:::
+
+::: {.callout-tip title="Results"}
+We reduce the processing time from **66 seconds to less than 1 second** per combination.
+
+| Function               | Time (ms) |
+|------------------------|-----------|
+| `get_cox_df`           | 52        |
+| `calculate_cox_analysis` | 776       |
+| `parse_cox_analysis`   | 22        |
+| `save_results`         | 21        |
+:::
+
+
+:::
+::: {.column width="50%"}
+
+![](figures/architecture-2.png){fig-align="center"}
+
+::: {.callout-note title="Architecture"}
+1.  **`get_cox_df`**: Reads Parquet files and computes combination-dependent columns.
+2.  **`calculate_cox_analysis`**: Calls the `CoxPHFitter` method from the `lifelines` package.
+3.  **`parse_cox_analysis`**: Generates a dictionary of the analysis results.
+4.  **`save_results`**: Writes the processed document to the database.
+:::
+
+:::
+:::
+
+## Multithreading {.smaller}
+
+
+::: columns
+::: {.column width="50%"}
+
+::: {.callout-tip title="Technical Insights"}
+
+1. Processes outperform threads for CPU-bound tasks -> **Python's Global Interpreter Lock (GIL)** limits threads' performance.
+2. Memory usage is higher with processes, which can lead to out-of-memory errors if too many processes are spawned.
+
+:::
+
+::: {.callout-warning title="Benchmarking"}
+
+| Count | Threads (tasks/s) | Processes (tasks/s) |
+|-------|-------------------|---------------------|
+| 1     | 1.20              | 1.1                 |
+| 2     | 1.50              | 1.6                 |
+| 4     | 1.60              | 1.9                 |
+| 8     | 1.60              | 2.2                 |
+| 16    | 1.80              | 2.3                 |
+| 32    | 1.70              | Out of RAM          |
+
+:::
+
+:::
+::: {.column width="50%"}
+
+::: {.callout-important title="Hybrid Strategy"}
+
+Since threads and processes are not mutually exclusive, we adopted a hybrid approach:
+
+* **Threads**: Efficient for I/O and lightweight parallelism. Used with 2× CPU cores.
+* **Processes**: Bypass GIL for CPU-bound tasks. Limited by available RAM.
+
+:::
+
+::: {.callout-note title="Resource Calibration"}
+The hybrid approach allows *fine-tuned* calibration of threads and processes, adapting to the device's CPU and memory capacity. This ensures optimal throughput without exceeding hardware limits.
+:::
+
+:::
+:::
+
+## Task distribution {.smaller}
+
+::: columns
+::: {.column width="70%"}
+![](figures/queue.png)
+
+:::
+::: {.column width="30%"}
+
+::: {.callout-tip title="Architecture"}
+- **Task independence**: Each task is a particular combination of medication and cancer type -> can be processed independently.
+- **Task Queue**: Distributes tasks to worker processes (rabbitmq).
+- **Worker Processes**: Can be configured to run on different machines, allowing for distributed computing.
+- **Task Management**: Each worker fetches tasks from the queue, processes them, and returns results to the main process.
+-  This architecture allows for **scalability** and **fault tolerance**.
+:::
+
+:::
+:::
+
+## Deployment {.smaller}
+
+```{mermaid}
+%% | echo: false
+graph TD
+    %% ================= STYLING =================
+    classDef requirements fill:#E1F5FE,stroke:#0288D1,stroke-width:2px,color:#222,stroke-dasharray:0,font-size:16px
+    classDef kubernetes fill:#E8F5E9,stroke:#388E3C,stroke-width:2px,color:#222,font-size:16px
+    classDef benefits fill:#FFF3E0,stroke:#F57C00,stroke-width:2px,color:#222,stroke-dasharray:0,font-size:16px
+    classDef arrow stroke:#555,stroke-width:2px,arrowhead:vee
+    classDef subgraphTitle fill:#f5f5f5,stroke:none,color:#333,font-size:18px,font-weight:bold
+
+
+    %% ================= NODES =================
+    subgraph ProjectRequirements["Project Requirements"]
+        R1["Independent <br> Task Execution"]:::requirements
+        R2["Python-native <br> CoxPH"]:::requirements
+        R3["Persistent <br> Result Storage"]:::requirements
+        R4["High Throughput <br> Needs"]:::requirements
+        R5["Elastic <br> Resource Use"]:::requirements
+    end
+
+    subgraph Kubernetes["Kubernetes Capabilities"]
+        K1["Pods: Isolated <br> Task Containers"]:::kubernetes
+        K2["Job Scheduling & <br> Resource Quotas"]:::kubernetes
+        K3["Persistent Volumes <br> (PVC + StorageClass)"]:::kubernetes
+        K4["Containerized <br> Python Environments"]:::kubernetes
+        K5["Horizontal Pod <br> Autoscaling (HPA)"]:::kubernetes
+        K6["Service Abstraction & <br> Load Balancing"]:::kubernetes
+    end
+
+    subgraph Benefits["System Benefits"]
+        B1["Concurrent Execution <br> & Isolation"]:::benefits
+        B2["Portable, Reproducible <br> Pipelines"]:::benefits
+        B3["Reliable Data Storage <br> & Access"]:::benefits
+        B4["Elastic Scaling <br> by Load"]:::benefits
+        B5["Resource Efficiency <br> & Cost Control"]:::benefits
+        B6["Operational <br> Resilience"]:::benefits
+    end
+
+    %% ================= CONNECTIONS =================
+    R1 -->|matches| K1
+    R2 -->|enabled by| K4
+    R3 -->|satisfied by| K3
+    R4 -->|handled by| K2
+    R5 -->|achieved via| K5
+
+    K1 -->|enables| B1
+    K4 -->|provides| B2
+    K3 -->|ensures| B3
+    K2 -->|delivers| B4
+    K5 -->|enables| B5
+    K6 -->|supports| B6
+
+
+```
+
+## Scalability {.smaller}
+
+
+:::{.callout-tip title="Comparative Analysis"}
+| Cloud      | Instance type   | Coremark | Count | vCPUs | Tasks/s | Total time  | Total cost |
+|:-----------|:----------------|:---------|:------|:------|:--------|:------------|:-----------|
+| GKE        | e2-highcpu-4    | 51937    | 1     | 4     | 1.0     | 22h 12min   | 2.42 USD   |
+|            |                 |          | 2     | 8     | 1.9     | 11h 41min   | 2.54 USD   |
+|            |                 |          | 4     | 16    | 3.6     | 06h 10min   | 2.68 USD   |
+|            |                 |          | 6     | 24    | 5.9     | 03h 45min   | 2.46 USD   |
+|            |                 |          | 8     | 32    | 7.0     | 03h 10min   | 2.76 USD   |
+|            | c2-standard-4   | 73269    | 4     | 16    |         |             |            |
+|            | c2d-highcpu-4   | 86953    | 4     | 16    | 17.0    | 01h 18min   | **2.06 USD** |
+| AKS        | D2s_v3          | 26323    | 1     | 2     |         |             |            |
+|            | F2s_v2          | 35925    | 2     | 4     | 3.8     | 05h 50min   | **1.90 USD** |
+| On-premise | opteron_6247    | 9634     | 1     | 10    | 0.4     | 2d 7h 30min | -          |
+|            |                 |          | 2     | 20    | 0.88    | 1d 1h 13min | -          |
+|            |                 |          | 4     | 40    | 2       | 11h 6min    | -          |
+:::
+
+## Conclusions {.smaller}
+
+
+::: columns
+
+::: {.column width="50%"}
+::: {.callout-tip title="Key Strategies"}
+
+- **Data Schema Optimization**  
+  Improved query speed and storage efficiency.
+
+- **Smart Precomputation**  
+  Reduced redundant work across combinations.
+
+- **Vectorized Operations**  
+  Exploited SIMD and memory locality for fast computation.
+
+:::
+:::
+
+::: {.column width="50%"}
+::: {.callout-important title="Infrastructure Gains"}
+
+- **Containerization + Kubernetes**  
+  Enabled scalable, reproducible, high-throughput execution.
+
+- **Cloud Agility**  
+  Demonstrated smooth migration and dynamic resource allocation.
+
+- **From Months to Hours**  
+  Showed how compute time dropped from 39 days to ~22 hours.
+
+:::
+:::
+:::
+
+## References {.smaller}

@@ -1,0 +1,15 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Jornadas Sarteco 25"
+
+format:
+  html:
+    theme:
+      - cosmo
+    css: styles.css
+
+
+
