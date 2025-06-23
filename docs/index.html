@@ -9,10 +9,12 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.31">
 
-  <meta name="author" content="Didac Floresna">
+  <meta name="author" content="Didac Florensa">
   <meta name="author" content="Jordi Vilaplana">
   <meta name="author" content="Jordi Mateo">
-  <title>Jornadas Sarteco 25 – Containerized Distributed Computing for Rapid AI Inference</title>
+  <meta name="author" content="Jordi Ventura">
+  <meta name="author" content="Pablo Fraile">
+  <title>Jornadas Sarteco 25 – Optimizing Workflows in Distributed Systems</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -221,13 +223,13 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Containerized Distributed Computing for Rapid AI Inference</h1>
-  <p class="subtitle">A Case Study in Provincial-Scale Data Efficiency</p>
+  <h1 class="title">Optimizing Workflows in Distributed Systems</h1>
+  <p class="subtitle">A Case Study for the Lleida Population Cancer Registry</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Didac Floresna 
+Didac Florensa 
 </div>
         <p class="quarto-title-affiliation">
             University of Lleida
@@ -249,14 +251,76 @@ Jordi Mateo
             University of Lleida
           </p>
     </div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Jordi Ventura 
+</div>
+        <p class="quarto-title-affiliation">
+            University of Lleida
+          </p>
+    </div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Pablo Fraile 
+</div>
+        <p class="quarto-title-affiliation">
+            University of Lleida
+          </p>
+    </div>
 </div>
 
 </section>
 <section id="introduction" class="slide level2 smaller">
 <h2>Introduction</h2>
-</section>
-<section id="motivation" class="slide level2 smaller">
-<h2>Motivation</h2>
+<div title="Context">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Context</strong></p>
+</div>
+<div class="callout-content">
+<p>This work was part of an <strong>Industrial PhD</strong>, <span class="citation" data-cites="florensamachine">Florensa Cazorla (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span>, collaboration between the Population Cancer Registry, Arnau de Vilanova Hospital, and the University of Lleida.</p>
+</div>
+</div>
+</div>
+</div>
+<div title="Purpose">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Purpose</strong></p>
+</div>
+<div class="callout-content">
+<p>Develop an <strong>optimized platform</strong> that enables <em>high-quality data</em> for identifying associations between medications and cancer types within the Lleida population registry.</p>
+</div>
+</div>
+</div>
+</div>
+<div title="Team">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Team</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li class="fragment"><strong>Dídac Florensa</strong>: PhD student, responsible for data management, analysis, and requirements gathering.</li>
+<li class="fragment"><strong>Pablo Fraile</strong> and <strong>Jordi Ventura</strong>: Master’s and Bachelor’s students, respectively, responsible for implementing and developing the platform.</li>
+<li class="fragment"><strong>Jordi Mateo</strong> and <strong>Jordi Vilaplana</strong>: Professors at the University of Lleida, leading the project.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="problem-statement" class="slide level2 smaller">
 <h2>Problem Statement</h2>
@@ -312,9 +376,6 @@ Jordi Mateo
 </div></div>
 
 <img data-src="figures/original.png" class="r-stretch"></section>
-<section id="objectives" class="slide level2 smaller">
-<h2>Objectives</h2>
-</section>
 <section id="profiling" class="slide level2 smaller">
 <h2>Profiling</h2>
 <div class="columns">
@@ -1255,6 +1316,9 @@ Showed how compute time dropped from 39 days to ~22 hours.</p></li>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-baziotisDiasDynamicRewriting2024" class="csl-entry" role="listitem">
 Baziotis, Stefanos, Daniel Kang, and Charith Mendis. 2024. <span>“Dias: <span>Dynamic Rewriting</span> of <span>Pandas Code</span>.”</span> <em>Proceedings of the ACM on Management of Data</em> 2 (1): 58:1–27. <a href="https://doi.org/10.1145/3639313">https://doi.org/10.1145/3639313</a>.
+</div>
+<div id="ref-florensamachine" class="csl-entry" role="listitem">
+Florensa Cazorla, Dı́dac. 2023. <span>“Machine Learning Approaches for Comprehensive Analysis of Population Cancer Registry Data.”</span>
 </div>
 </div>
 </section>

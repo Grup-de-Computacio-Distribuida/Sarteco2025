@@ -1,12 +1,16 @@
 ---
-title: "Containerized Distributed Computing for Rapid AI Inference"
-subtitle: "A Case Study in Provincial-Scale Data Efficiency" 
+title: "Optimizing Workflows in Distributed Systems"
+subtitle: "A Case Study for the Lleida Population Cancer Registry" 
 author:
-  - name: Didac Floresna
+  - name: Didac Florensa
     affiliation: University of Lleida
   - name: Jordi Vilaplana
     affiliation: University of Lleida
   - name: Jordi Mateo
+    affiliation: University of Lleida
+  - name: Jordi Ventura
+    affiliation: University of Lleida
+  - name: Pablo Fraile
     affiliation: University of Lleida
 logo: "logo.png"
 bibliography: references.bib
@@ -29,7 +33,19 @@ mermaid:
 
 ## Introduction {.smaller}
 
-## Motivation {.smaller}
+::: {.callout-tip title="Context"}
+This work was part of an **Industrial PhD**, @florensamachine, collaboration between the Population Cancer Registry, Arnau de Vilanova Hospital, and the University of Lleida.
+:::
+
+::: {.callout-warning title="Purpose"}
+Develop an **optimized platform** that enables *high-quality data* for identifying associations between medications and cancer types within the Lleida population registry.
+:::
+
+::: {.callout-important title="Team"}
+- **Dídac Florensa**: PhD student, responsible for data management, analysis, and requirements gathering.
+- **Pablo Fraile** and **Jordi Ventura**: Master's and Bachelor's students, respectively, responsible for implementing and developing the platform.
+- **Jordi Mateo** and **Jordi Vilaplana**: Professors at the University of Lleida, leading the project.
+:::
 
 ## Problem Statement {.smaller}
 
@@ -60,8 +76,6 @@ A *single machine* would require **61 days** to complete this analysis, with eac
 
 ![](figures/original.png)
 
-
-## Objectives {.smaller}
 
 ## Profiling {.smaller}
 
