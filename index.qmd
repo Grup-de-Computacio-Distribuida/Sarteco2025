@@ -8,7 +8,7 @@ author:
     affiliation: University of Lleida
   - name: Jordi Mateo
     affiliation: University of Lleida
-  - name: Jordi Ventura
+  - name: Jordi Garcia
     affiliation: University of Lleida
   - name: Pablo Fraile
     affiliation: University of Lleida
@@ -43,7 +43,7 @@ Develop an **optimized platform** that enables *high-quality data* for identifyi
 
 ::: {.callout-important title="Team"}
 - **Dídac Florensa**: PhD student, responsible for data management, analysis, and requirements gathering.
-- **Pablo Fraile** and **Jordi Ventura**: Master's and Bachelor's students, respectively, responsible for implementing and developing the platform.
+- **Pablo Fraile** and **Jordi Garcia**: Master's and Bachelor's students, respectively, responsible for implementing and developing the platform.
 - **Jordi Mateo** and **Jordi Vilaplana**: Professors at the University of Lleida, leading the project.
 :::
 
