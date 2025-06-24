@@ -335,7 +335,9 @@ cox_df.loc[with_cancer_df.index, "has_cancer"] = True
 :::
 :::
 
-
+::: {.callout-tip title="Summary of Optimizations"}
+The total reduction in time is around **52 ms** per combination. For 79,931 combinations, this results in a total time of **~1 hours**.
+:::
 
 
 ## Eliminating Communications {.smaller footer=false}

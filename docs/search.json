@@ -53,7 +53,7 @@
     "href": "index.html#code-optimizations",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Code Optimizations",
-    "text": "Code Optimizations\n\n\nNon-index-aware\ncancers_df[cancers_df[\"loc3\"] == \"C19\"]\nIndex-aware\ncancers_df.loc[(slice(None), \"C19\"), :]\n\n\n\n\n\n\n\n\nResults\n\n\n\nNon-index-aware: 1.86 ms\nIndex-aware: 247 μs\n\n\n\n\n\n\n\n\n\nUsing isin()\ncox_df[\"has_cancer\"] = cox_df.index.isin(with_cancer_df.index)\nUsing loc with prefill\ncox_df[\"has_cancer\"] = False\ncox_df.loc[with_cancer_df.index, \"has_cancer\"] = True\n\n\n\n\n\n\n\n\nResults\n\n\n\nUsing isin(): 3.25 ms\nUsing loc with prefill: 464 μs"
+    "text": "Code Optimizations\n\n\nNon-index-aware\ncancers_df[cancers_df[\"loc3\"] == \"C19\"]\nIndex-aware\ncancers_df.loc[(slice(None), \"C19\"), :]\n\n\n\n\n\n\n\n\nResults\n\n\n\nNon-index-aware: 1.86 ms\nIndex-aware: 247 μs\n\n\n\n\n\n\n\n\n\nUsing isin()\ncox_df[\"has_cancer\"] = cox_df.index.isin(with_cancer_df.index)\nUsing loc with prefill\ncox_df[\"has_cancer\"] = False\ncox_df.loc[with_cancer_df.index, \"has_cancer\"] = True\n\n\n\n\n\n\n\n\nResults\n\n\n\nUsing isin(): 3.25 ms\nUsing loc with prefill: 464 μs\n\n\n\n\n\n\n\n\n\n\n\n\n\nSummary of Optimizations\n\n\nThe total reduction in time is around 52 ms per combination. For 79,931 combinations, this results in a total time of ~1 hours."
   },
   {
     "objectID": "index.html#eliminating-communications",
