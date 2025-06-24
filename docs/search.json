@@ -4,7 +4,7 @@
     "href": "index.html#introduction",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Introduction",
-    "text": "Introduction\n\n\n\n\n\n\n\nContext\n\n\nThis work was part of an Industrial PhD, Florensa Cazorla (2023), collaboration between the Population Cancer Registry, Arnau de Vilanova Hospital, and the University of Lleida.\n\n\n\n\n\n\n\n\n\n\n\nPurpose\n\n\nDevelop an optimized platform that enables high-quality data for identifying associations between medications and cancer types within the Lleida population registry.\n\n\n\n\n\n\n\n\n\n\n\nTeam\n\n\n\nDídac Florensa: PhD student, responsible for data management, analysis, and requirements gathering.\nPablo Fraile and Jordi Garcia: Master’s and Bachelor’s students, respectively, responsible for implementing and developing the platform.\nJordi Mateo and Jordi Vilaplana: Professors at the University of Lleida, leading the project."
+    "text": "Introduction\n\n\n\n\n\n\n\nContext\n\n\nThis work was part of an Industrial PhD, Florensa Cazorla (2023), collaboration between the Population Cancer Registry, Arnau de Vilanova Hospital, and the University of Lleida.\n\n\n\n\n\n\n\n\n\n\n\n\nPurpose\n\n\nDevelop an optimized platform that enables high-quality data for identifying associations between medications and cancer types within the Lleida population registry.\n\n\n\n\n\n\n\n\n\n\n\n\n\nPublications Related\n\n\n\nFlorensa, Mateo, Solsona, et al. (2023) -&gt; Low-dose acetylsalicylic acid for cancer prevention\nFlorensa, Mateo, Miret, et al. (2023) -&gt; Metformin and association with pancreas cancer\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\n\n\n\nDídac Florensa: PhD student, responsible for data management, analysis, and requirements gathering.\nPablo Fraile and Jordi Garcia: Master’s and Bachelor’s students, respectively, responsible for implementing and developing the platform.\nJordi Mateo and Jordi Vilaplana: Professors at the University of Lleida, leading the project."
   },
   {
     "objectID": "index.html#problem-statement",
@@ -18,28 +18,28 @@
     "href": "index.html#profiling",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Profiling",
-    "text": "Profiling\n\n\n\n\n\n\n\n\n\nGoal\n\n\n\nIdentify bottlenecks\nIdentify inefficiencies\nPropose optimizations\n\n\n\n\n\n\n\n\n\n\n\n\n\nFindings\n\n\n\nData not retrieved in a single query\n\nJoin-like applied on a non-relational DB\n\nQueries misaligned with schema structure\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProposals\n\n\n\nSchema redesign based on query access patterns.\n\n\n\n\n\n\n\n\nYearly Schema\n{\n  \"expositions\": {\n    \"2017\": {\n      \"J01FA09\": 100,\n      \"J01FA10\": 200\n    },\n    \"2018\": {\n      \"J01FA09\": 150,\n      \"J01FA10\": 250\n    },..\n  }\n}\n\nATC Code Schema\n{\n  \"expositions\": {\n    \"J01FA09\": {\n      \"2017\": 100,\n      \"2018\": 150\n    },\n    \"J01FA10\": {\n      \"2017\": 200,\n      \"2018\": 250\n    },...\n  }\n}\n\nFlattened Schema\n{\n  \"expositions\": [\n    { \"atc\": \"J01FA09\", \n      \"year\": 2017, \n      \"dose\": 100 },\n    { \"atc\": \"J01FA09\", \n      \"year\": 2018, \n      \"dose\": 150 },\n    ...\n  ]\n}"
+    "text": "Profiling\n\n\n\n\n\n\n\n\n\nGoal\n\n\n\nIdentify bottlenecks\nIdentify inefficiencies\nPropose optimizations\n\n\n\n\n\n\n\n\n\n\n\n\n\nFindings\n\n\n\nData not retrieved in a single query\n\nJoin-like applied on a non-relational DB\n\nQueries misaligned with schema structure\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProposals\n\n\n\nSchema redesign based on query access patterns.\n\n\n\n\n\n\n\n\n\nYearly Schema\n{\n  \"expositions\": {\n    \"2017\": {\n      \"J01FA09\": 100,\n      \"J01FA10\": 200\n    },\n    \"2018\": {\n      \"J01FA09\": 150,\n      \"J01FA10\": 250\n    },..\n  }\n}\n\nATC Code Schema\n{\n  \"expositions\": {\n    \"J01FA09\": {\n      \"2017\": 100,\n      \"2018\": 150\n    },\n    \"J01FA10\": {\n      \"2017\": 200,\n      \"2018\": 250\n    },...\n  }\n}\n\nFlattened Schema\n{\n  \"expositions\": [\n    { \"atc\": \"J01FA09\", \n      \"year\": 2017, \n      \"dose\": 100 },\n    { \"atc\": \"J01FA09\", \n      \"year\": 2018, \n      \"dose\": 150 },\n    ...\n  ]\n}"
   },
   {
     "objectID": "index.html#data-schema-impact",
     "href": "index.html#data-schema-impact",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Data schema impact",
-    "text": "Data schema impact\n\n\n\n\n\n\n\n\n\n\n\n\n\nObservation\n\n\nProposed solutions reduce query time (at the cost of disk space for indexes). However, deserialization time increases across all proposals.\n\n\n\n\n\n\n\n\n\n\n\nNext Steps\n\n\nHow can we simultaneously minimize deserialization time and reduce query execution?"
+    "text": "Data schema impact\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nObservation\n\n\nProposed solutions reduce query time (at the cost of disk space for indexes). However, deserialization time increases across all proposals.\n\n\n\n\n\n\n\n\n\n\n\n\n\nNext Steps\n\n\nHow can we simultaneously minimize deserialization time and reduce query execution?"
   },
   {
     "objectID": "index.html#deserialization",
     "href": "index.html#deserialization",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Deserialization",
-    "text": "Deserialization\n\n\n\n\n\nSchema\nEngine\nSize\nTime\nRAM\n\n\n\n\nFlat Dict\nPyMongo\n84 MB\n1.3 s\n88 MB\n\n\nDenormal.\nPyMongo\n192 MB\n17.0 s\n5.5 GB\n\n\nDenormal.\nPyMongoArrow\n192 MB\n29.6 s\n2.8 GB\n\n\n\n\n\n\n\n\n\n\nFindings\n\n\n\nPyMongo returns Python dictionaries → slow for large result sets\n\nPyMongoArrow improves typing, but still memory-heavy\n\nOptimal performance requires columnar layout with primitive types\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\nSolution: split into 3 DataFrames:\npatients, expositions, cancers"
+    "text": "Deserialization\n\n\n\n\n\n\n\n\n\nFindings\n\n\n\nPyMongo returns Python dictionaries → slow for large result sets\n\nPyMongoArrow improves typing, but still memory-heavy\n\nOptimal performance requires columnar layout with primitive types\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\nSolution: split into 3 DataFrames:\npatients, expositions, cancers"
   },
   {
     "objectID": "index.html#memory-optimization",
     "href": "index.html#memory-optimization",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Memory Optimization",
-    "text": "Memory Optimization\n\n\n\n\n\n\n\n\n\nFindings\n\n\n\nMost patient features are invariant across combinations (age, BMI, diabetes…)\n\nThe shape of the DataFrame impacts the compression.\nSorting the data and downcasting types can significantly reduce memory space.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProposal\n\n\n\nPrecompute static features.\nLoad data once into memory.\nSave shared data in Apache Parquet:\n\nFast to read\n\nCompact (&lt;45 MB)\n\n\nMinimize queries to the database."
+    "text": "Memory Optimization\n\n\n\n\n\n\n\nFindings\n\n\n\nMost patient features are invariant across combinations (age, BMI, diabetes…)\n\nSorting the data and downcasting types can significantly reduce memory space.\n\n\n\n\n\n\n\n\n\n\n\n\nProposal\n\n\n\nPrecompute static features.\nLoad data once into memory.\nSave shared data in Apache Parquet.\nMinimize queries to the database."
   },
   {
     "objectID": "index.html#data-ingestion-mechanism",
@@ -49,59 +49,59 @@
     "text": "Data Ingestion Mechanism\n\n\n\n\n\n\n\n\n\nMechanism\n\n\n\nPrecalculate Dataframes\nRead the Dataframes\nCSV generation with features and the event column\nCSV reading and data preprocessing\nCOXPH analysis (using a file as stdout)\nRead and parse the results\nSave structured results for later queries\n\n\n\n\n\n\n\n\n\n\n\n\nImprovements\n\n\n\nQuery-driven -&gt; Reduce time to get data.\nPrecalculate shared data -&gt; Avoid repeated queries.\nUse Parquet files -&gt; Efficient storage and fast access."
   },
   {
-    "objectID": "index.html#vectorized-computation",
-    "href": "index.html#vectorized-computation",
+    "objectID": "index.html#code-optimizations",
+    "href": "index.html#code-optimizations",
     "title": "Optimizing Workflows in Distributed Systems",
-    "section": "Vectorized Computation",
-    "text": "Vectorized Computation\nExploit SIMD architectures and vectorized operations, inspired by Baziotis, Kang, and Mendis (2024).\n\n\nNon-index-aware\ncancers_df[cancers_df[\"loc3\"] == \"C19\"]\nIndex-aware\ncancers_df.loc[(slice(None), \"C19\"), :]\n\n\n\n\n\n\n\n\nResults\n\n\n\nNon-index-aware: 1.86 ms\nIndex-aware: 247 μs\n\n\n\n\n\n\n\n\n\nUsing isin()\ncox_df[\"has_cancer\"] = cox_df.index.isin(with_cancer_df.index)\nUsing loc with prefill\ncox_df[\"has_cancer\"] = False\ncox_df.loc[with_cancer_df.index, \"has_cancer\"] = True\n\n\n\n\n\n\n\n\nResults\n\n\n\nUsing isin(): 3.25 ms\nUsing loc with prefill: 464 μs\n\n\n\n\n\n\n\n\n\n\n\n\n\nSummary of Optimizations\n\n\nThe total reduction in time for the second step of the data ingestion is around 52 ms per combination. For 79,931 combinations, this results in a total time of ~4.1 hours."
+    "section": "Code Optimizations",
+    "text": "Code Optimizations\n\n\nNon-index-aware\ncancers_df[cancers_df[\"loc3\"] == \"C19\"]\nIndex-aware\ncancers_df.loc[(slice(None), \"C19\"), :]\n\n\n\n\n\n\n\n\nResults\n\n\n\nNon-index-aware: 1.86 ms\nIndex-aware: 247 μs\n\n\n\n\n\n\n\n\n\nUsing isin()\ncox_df[\"has_cancer\"] = cox_df.index.isin(with_cancer_df.index)\nUsing loc with prefill\ncox_df[\"has_cancer\"] = False\ncox_df.loc[with_cancer_df.index, \"has_cancer\"] = True\n\n\n\n\n\n\n\n\nResults\n\n\n\nUsing isin(): 3.25 ms\nUsing loc with prefill: 464 μs\n\n\n\n\n\n\n\n\n\n\n\n\n\nSummary of Optimizations\n\n\nThe total reduction in time is around 52 ms per combination. For 79,931 combinations, this results in a total time of ~4.1 hours."
   },
   {
     "objectID": "index.html#eliminating-communications",
     "href": "index.html#eliminating-communications",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Eliminating Communications",
-    "text": "Eliminating Communications\n\n\n\n\n\n\n\n\n\nProblem\n\n\nDisk I/O for inter-process communication (IPC) with R is a significant bottleneck. Traditional methods like pipes, sockets, shared memory, or message queues introduce considerable overhead.\n\n\n\n\n\n\n\n\n\n\n\nProposal\n\n\nCan we eliminate this IPC by performing the CoxPH analysis directly in Python?\n\n\n\n\n\n\n\n\n\n\n\nResults\n\n\nWe reduce the processing time from 66 seconds to less than 1 second per combination.\n\n\n\nFunction\nTime (ms)\n\n\n\n\nget_cox_df\n52\n\n\ncalculate_cox_analysis\n776\n\n\nparse_cox_analysis\n22\n\n\nsave_results\n21\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nArchitecture\n\n\n\nget_cox_df: Reads Parquet files and computes combination-dependent columns.\ncalculate_cox_analysis: Calls the CoxPHFitter method from the lifelines package.\nparse_cox_analysis: Generates a dictionary of the analysis results.\nsave_results: Writes the processed document to the database."
+    "text": "Eliminating Communications\n\n\n\n\n\n\n\n\n\nProblem\n\n\nDisk I/O for inter-process communication (IPC) with R is a significant bottleneck.\n\n\n\n\n\n\n\n\n\n\n\nResults\n\n\nWe reduce the processing time from 66 seconds to less than 1 second per combination.\n\n\n\nFunction\nTime (ms)\n\n\n\n\nget_cox_df\n52\n\n\ncalculate_cox_analysis\n776\n\n\nparse_cox_analysis\n22\n\n\nsave_results\n21"
   },
   {
     "objectID": "index.html#multithreading",
     "href": "index.html#multithreading",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Multithreading",
-    "text": "Multithreading\n\n\n\n\n\n\n\n\n\nTechnical Insights\n\n\n\nProcesses outperform threads for CPU-bound tasks -&gt; Python’s Global Interpreter Lock (GIL) limits threads’ performance.\nMemory usage is higher with processes, which can lead to out-of-memory errors if too many processes are spawned.\n\n\n\n\n\n\n\n\n\n\n\n\nBenchmarking\n\n\n\n\n\nCount\nThreads (tasks/s)\nProcesses (tasks/s)\n\n\n\n\n1\n1.20\n1.1\n\n\n2\n1.50\n1.6\n\n\n4\n1.60\n1.9\n\n\n8\n1.60\n2.2\n\n\n16\n1.80\n2.3\n\n\n32\n1.70\nOut of RAM\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHybrid Strategy\n\n\nSince threads and processes are not mutually exclusive, we adopted a hybrid approach:\n\nThreads: Efficient for I/O and lightweight parallelism. Used with 2× CPU cores.\nProcesses: Bypass GIL for CPU-bound tasks. Limited by available RAM.\n\n\n\n\n\n\n\n\n\n\n\n\nResource Calibration\n\n\nThe hybrid approach allows fine-tuned calibration of threads and processes, adapting to the device’s CPU and memory capacity. This ensures optimal throughput without exceeding hardware limits."
+    "text": "Multithreading\n\n\n\n\n\n\n\nTechnical Insights\n\n\n\nProcesses outperform threads for CPU-bound tasks -&gt; Python’s Global Interpreter Lock (GIL) limits threads’ performance.\nMemory usage is higher with processes, which can lead to out-of-memory errors if too many processes are spawned.\nThreads are more efficient for I/O-bound tasks, allowing for faster startup and lower memory usage.\n\n\n\n\n\n\n\n\n\n\n\n\nHybrid Strategy\n\n\nSince threads and processes are not mutually exclusive, we adopted a hybrid approach:\n\nThreads: Efficient for I/O and lightweight parallelism. Used with 2× CPU cores.\nProcesses: Bypass GIL for CPU-bound tasks. Limited by available RAM.\n\n\n\n\n\n\n\n\n\n\n\n\nResource Calibration\n\n\nThe hybrid approach allows fine-tuned calibration of threads and processes, adapting to the device’s CPU and memory capacity. This ensures optimal throughput without exceeding hardware limits."
   },
   {
     "objectID": "index.html#task-distribution",
     "href": "index.html#task-distribution",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Task distribution",
-    "text": "Task distribution\n\n\n\n\n\n\n\n\n\n\n\nArchitecture\n\n\n\nTask independence: Each task is a particular combination of medication and cancer type -&gt; can be processed independently.\nTask Queue: Distributes tasks to worker processes (rabbitmq).\nWorker Processes: Can be configured to run on different machines, allowing for distributed computing.\nTask Management: Each worker fetches tasks from the queue, processes them, and returns results to the main process.\nThis architecture allows for scalability and fault tolerance."
+    "text": "Task distribution\n\n\n\n\n\n\n\n\n\n\n\nArchitecture\n\n\n\nTask independence: Each task is a particular combination of medication and cancer type -&gt; can be processed independently.\nTask Queue: Distributes tasks to worker processes (rabbitmq).\nWorker Processes: Can be configured to run on different machines, allowing for distributed computing.\nTask Management: Each worker fetches tasks from the queue, processes them, and returns results to the main process."
   },
   {
     "objectID": "index.html#deployment",
     "href": "index.html#deployment",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Deployment",
-    "text": "Deployment\n\n\n\n\n\ngraph TD\n    %% ================= STYLING =================\n    classDef requirements fill:#E1F5FE,stroke:#0288D1,stroke-width:2px,color:#222,stroke-dasharray:0,font-size:16px\n    classDef kubernetes fill:#E8F5E9,stroke:#388E3C,stroke-width:2px,color:#222,font-size:16px\n    classDef benefits fill:#FFF3E0,stroke:#F57C00,stroke-width:2px,color:#222,stroke-dasharray:0,font-size:16px\n    classDef arrow stroke:#555,stroke-width:2px,arrowhead:vee\n    classDef subgraphTitle fill:#f5f5f5,stroke:none,color:#333,font-size:18px,font-weight:bold\n\n\n    %% ================= NODES =================\n    subgraph ProjectRequirements[\"Project Requirements\"]\n        R1[\"Independent &lt;br&gt; Task Execution\"]:::requirements\n        R2[\"Python-native &lt;br&gt; CoxPH\"]:::requirements\n        R3[\"Persistent &lt;br&gt; Result Storage\"]:::requirements\n        R4[\"High Throughput &lt;br&gt; Needs\"]:::requirements\n        R5[\"Elastic &lt;br&gt; Resource Use\"]:::requirements\n    end\n\n    subgraph Kubernetes[\"Kubernetes Capabilities\"]\n        K1[\"Pods: Isolated &lt;br&gt; Task Containers\"]:::kubernetes\n        K2[\"Job Scheduling & &lt;br&gt; Resource Quotas\"]:::kubernetes\n        K3[\"Persistent Volumes &lt;br&gt; (PVC + StorageClass)\"]:::kubernetes\n        K4[\"Containerized &lt;br&gt; Python Environments\"]:::kubernetes\n        K5[\"Horizontal Pod &lt;br&gt; Autoscaling (HPA)\"]:::kubernetes\n        K6[\"Service Abstraction & &lt;br&gt; Load Balancing\"]:::kubernetes\n    end\n\n    subgraph Benefits[\"System Benefits\"]\n        B1[\"Concurrent Execution &lt;br&gt; & Isolation\"]:::benefits\n        B2[\"Portable, Reproducible &lt;br&gt; Pipelines\"]:::benefits\n        B3[\"Reliable Data Storage &lt;br&gt; & Access\"]:::benefits\n        B4[\"Elastic Scaling &lt;br&gt; by Load\"]:::benefits\n        B5[\"Resource Efficiency &lt;br&gt; & Cost Control\"]:::benefits\n        B6[\"Operational &lt;br&gt; Resilience\"]:::benefits\n    end\n\n    %% ================= CONNECTIONS =================\n    R1 --&gt;|matches| K1\n    R2 --&gt;|enabled by| K4\n    R3 --&gt;|satisfied by| K3\n    R4 --&gt;|handled by| K2\n    R5 --&gt;|achieved via| K5\n\n    K1 --&gt;|enables| B1\n    K4 --&gt;|provides| B2\n    K3 --&gt;|ensures| B3\n    K2 --&gt;|delivers| B4\n    K5 --&gt;|enables| B5\n    K6 --&gt;|supports| B6"
+    "text": "Deployment\n\n\n\n\n\n\n\nRequirements\n\n\n\nIndependent combinations to process.\nScalable and reproducible execution.\n\n\n\n\n\n\n\n\n\n\n\n\n\nRationale\n\n\n\n\n\n\n\n\n\n\nFeature\nTraditional MPI Cluster\nKubernetes\n\n\n\n\nResource Allocation\nStatic (fixed per job)\nDynamic (per-task)\n\n\nScaling\nManual intervention required\nAuto-scaling (HPA + Cluster)\n\n\nFault Tolerance\nJob fails if worker crashes\nSelf-healing"
   },
   {
     "objectID": "index.html#scalability",
     "href": "index.html#scalability",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Scalability",
-    "text": "Scalability\n\n\n\n\n\n\n\nComparative Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCloud\nInstance type\nCoremark\nCount\nvCPUs\nTasks/s\nTotal time\nTotal cost\n\n\n\n\nGKE\ne2-highcpu-4\n51937\n1\n4\n1.0\n22h 12min\n2.42 USD\n\n\n\n\n\n2\n8\n1.9\n11h 41min\n2.54 USD\n\n\n\n\n\n4\n16\n3.6\n06h 10min\n2.68 USD\n\n\n\n\n\n6\n24\n5.9\n03h 45min\n2.46 USD\n\n\n\n\n\n8\n32\n7.0\n03h 10min\n2.76 USD\n\n\n\nc2-standard-4\n73269\n4\n16\n\n\n\n\n\n\nc2d-highcpu-4\n86953\n4\n16\n17.0\n01h 18min\n2.06 USD\n\n\nAKS\nD2s_v3\n26323\n1\n2\n\n\n\n\n\n\nF2s_v2\n35925\n2\n4\n3.8\n05h 50min\n1.90 USD\n\n\nOn-premise\nopteron_6247\n9634\n1\n10\n0.4\n2d 7h 30min\n-\n\n\n\n\n\n2\n20\n0.88\n1d 1h 13min\n-\n\n\n\n\n\n4\n40\n2\n11h 6min\n-"
+    "text": "Scalability\n\n\n\n\n\n\n\nComparative Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCloud\nInstance type\nCoremark\nWorkers\nvCPUs\nTasks/s\nTotal time\n\n\n\n\nGKE\ne2-highcpu-4\n51937\n1\n4\n1.0\n22h 12min\n\n\n\n\n\n2\n8\n1.9\n11h 41min\n\n\n\n\n\n4\n16\n3.6\n06h 10min\n\n\n\n\n\n8\n32\n7.0\n03h 10min\n\n\n\nc2d-highcpu-4\n86953\n4\n16\n17.0\n01h 18min\n\n\nOn-premise\nopteron_6247\n9634\n1\n10\n0.4\n2d 7h 30min\n\n\n\n\n\n2\n20\n0.88\n1d 1h 13min\n\n\n\n\n\n4\n40\n2\n11h 6min"
   },
   {
     "objectID": "index.html#conclusions",
     "href": "index.html#conclusions",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Conclusions",
-    "text": "Conclusions\n\n\n\n\n\n\n\n\n\nKey Strategies\n\n\n\nData Schema Optimization\nImproved query speed and storage efficiency.\nSmart Precomputation\nReduced redundant work across combinations.\nVectorized Operations\nExploited SIMD and memory locality for fast computation.\n\n\n\n\n\n\n\n\n\n\n\n\n\nInfrastructure Gains\n\n\n\nContainerization + Kubernetes\nEnabled scalable, reproducible, high-throughput execution.\nCloud Agility\nDemonstrated smooth migration and dynamic resource allocation.\nFrom Months to Hours\nShowed how compute time dropped from 39 days to ~22 hours."
+    "text": "Conclusions\n\n\n\n\n\n\n\nKey Optimizations\n\n\n\nSchema Optimization\nQuery-driven design and better deserialization.\nPrecomputation & Storage\nEliminated redundant calculations and migrated from CSV to Parquet for columnar efficiency.\nCompute Efficiency and Communication Overhead\nIndex-aware queries and optimized pipelines.\nParallel Execution\nHybrid threading/multiprocessing to maximize resource utilization.\nDistributed Scaling\nKubernetes-orchestrated workers with queue-based load balancing.\n\n\n\n\n\n\n\n\n\n\n\n\n\nTake Home Messages\n\n\n\n61 Days → ~Hours\nComputational throughput improved through systematic optimization."
   },
   {
     "objectID": "index.html#references",
     "href": "index.html#references",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "References",
-    "text": "References\n\n\n\n\nBaziotis, Stefanos, Daniel Kang, and Charith Mendis. 2024. “Dias: Dynamic Rewriting of Pandas Code.” Proceedings of the ACM on Management of Data 2 (1): 58:1–27. https://doi.org/10.1145/3639313.\n\n\nFlorensa Cazorla, Dı́dac. 2023. “Machine Learning Approaches for Comprehensive Analysis of Population Cancer Registry Data.”"
+    "text": "References\n\n\n\n\nFlorensa Cazorla, Dı́dac. 2023. “Machine Learning Approaches for Comprehensive Analysis of Population Cancer Registry Data.”\n\n\nFlorensa, Dı́dac, J Mateo, C Miret, S Godoy, and P Godoy. 2023. “DIABETES, EXCESS WEIGHT, METFORMIN AND ASSOCIATION WITH PANCREAS CANCER.” In GACETA SANITARIA, 37:S198–98. ELSEVIER 685 ROUTE 202-206, BRIDGEWATER, NJ 08807 USA.\n\n\nFlorensa, Dı́dac, Jordi Mateo, Francesc Solsona, Leonardo Galván, Miquel Mesas, Ramon Piñol, Leonardo Espinosa-Leal, and Pere Godoy. 2023. “Low-Dose Acetylsalicylic Acid for Cancer Prevention Considering Risk Factors: A Retrospective Cohort Study.” Annals of Epidemiology 84: 60–66."
   }
 ]

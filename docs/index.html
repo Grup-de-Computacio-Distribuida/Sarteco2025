@@ -213,10 +213,6 @@
       margin-right: 0; 
     }
   </style>
-  <meta name="mermaid-theme" content="neutral">
-  <script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-  <script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-  <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -270,6 +266,9 @@ Pablo Fraile
 </div>
 
 </section>
+<section id="section" class="slide level2" data-background-image="figures/dcg.jpeg" data-footer="false">
+<h2></h2>
+</section>
 <section id="introduction" class="slide level2 smaller">
 <h2>Introduction</h2>
 <div title="Context">
@@ -287,6 +286,7 @@ Pablo Fraile
 </div>
 </div>
 </div>
+<div class="fragment">
 <div title="Purpose">
 <div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
@@ -302,6 +302,28 @@ Pablo Fraile
 </div>
 </div>
 </div>
+</div>
+<div class="fragment">
+<div title="Publications Related">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Publications Related</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li class="fragment"><span class="citation" data-cites="florensa2023low">Florensa, Mateo, Solsona, et al. (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span> -&gt; Low-dose acetylsalicylic acid for cancer prevention</li>
+<li class="fragment"><span class="citation" data-cites="florensa2023diabetes">Florensa, Mateo, Miret, et al. (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span> -&gt; Metformin and association with pancreas cancer</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
 <div title="Team">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -321,11 +343,12 @@ Pablo Fraile
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="problem-statement" class="slide level2 smaller">
 <h2>Problem Statement</h2>
 <div class="columns">
-<div class="column" style="width:30%;">
+<div class="column fragment" style="width:30%;">
 <div title="Goal">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -341,7 +364,7 @@ Pablo Fraile
 </div>
 </div>
 </div>
-</div><div class="column" style="width:35%;">
+</div><div class="column fragment" style="width:35%;">
 <div title="Challenge">
 <div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
@@ -357,7 +380,7 @@ Pablo Fraile
 </div>
 </div>
 </div>
-</div><div class="column" style="width:35%;">
+</div><div class="column fragment" style="width:35%;">
 <div title="Inital Approach">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -374,12 +397,14 @@ Pablo Fraile
 </div>
 </div>
 </div></div>
-
-<img data-src="figures/original.png" class="r-stretch"></section>
+<div class="fragment">
+<p><img data-src="figures/original.png" style="width:80.0%"></p>
+</div>
+</section>
 <section id="profiling" class="slide level2 smaller">
 <h2>Profiling</h2>
 <div class="columns">
-<div class="column" style="width:35%;">
+<div class="column fragment" style="width:35%;">
 <div title="Goal">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -399,7 +424,7 @@ Pablo Fraile
 </div>
 </div>
 </div>
-</div><div class="column" style="width:40%;">
+</div><div class="column fragment" style="width:40%;">
 <div title="Findings">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -422,7 +447,7 @@ Pablo Fraile
 </div>
 </div>
 </div>
-</div><div class="column" style="width:25%;">
+</div><div class="column fragment" style="width:25%;">
 <div title="Proposals">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -441,6 +466,7 @@ Pablo Fraile
 </div>
 </div>
 </div></div>
+<div class="fragment">
 <div class="columns">
 <div class="column" style="width:33%;">
 <h4 id="yearly-schema">Yearly Schema</h4>
@@ -484,15 +510,17 @@ Pablo Fraile
 <span id="cb3-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
 <span id="cb3-11"><a aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
+</div>
 </section>
 <section id="data-schema-impact" class="slide level2 smaller">
 <h2>Data schema impact</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column fragment" style="width:50%;">
 <p><img data-src="figures/db_sizes.png"></p>
-</div><div class="column" style="width:50%;">
+</div><div class="column fragment" style="width:50%;">
 <p><img data-src="figures/query_time.png"></p>
 </div></div>
+<div class="fragment">
 <div title="Observation">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -508,6 +536,8 @@ Pablo Fraile
 </div>
 </div>
 </div>
+</div>
+<div class="fragment">
 <div title="Next Steps">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -523,46 +553,13 @@ Pablo Fraile
 </div>
 </div>
 </div>
+</div>
 </section>
 <section id="deserialization" class="slide level2 smaller">
 <h2>Deserialization</h2>
 <div class="columns">
-<div class="column" style="width:60%;">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Schema</th>
-<th>Engine</th>
-<th>Size</th>
-<th>Time</th>
-<th>RAM</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Flat Dict</td>
-<td>PyMongo</td>
-<td>84 MB</td>
-<td>1.3 s</td>
-<td>88 MB</td>
-</tr>
-<tr class="even">
-<td>Denormal.</td>
-<td>PyMongo</td>
-<td>192 MB</td>
-<td>17.0 s</td>
-<td>5.5 GB</td>
-</tr>
-<tr class="odd">
-<td>Denormal.</td>
-<td>PyMongoArrow</td>
-<td>192 MB</td>
-<td>29.6 s</td>
-<td>2.8 GB</td>
-</tr>
-</tbody>
-</table>
-<div title="Findings">
+<div class="column fragment" style="width:40%;">
+<div class="fragment" title="Findings">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -583,8 +580,7 @@ Pablo Fraile
 </div>
 </div>
 </div>
-</div><div class="column" style="width:40%;">
-<div title="Solution">
+<div class="fragment" title="Solution">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -602,14 +598,13 @@ Pablo Fraile
 </div>
 </div>
 </div>
+</div><div class="column fragment" style="width:60%;">
 <p><img data-src="figures/split_df.png"></p>
 </div></div>
 </section>
 <section id="memory-optimization" class="slide level2 smaller">
 <h2>Memory Optimization</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div title="Findings">
+<div class="fragment" title="Findings">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -620,18 +615,15 @@ Pablo Fraile
 </div>
 <div class="callout-content">
 <ul>
-<li class="fragment">Most patient features are <strong>invariant</strong> across combinations (age, BMI, diabetes…)<br>
+<li class="fragment">Most patient features are <strong>invariant</strong> across combinations (<em>age, BMI, diabetes</em>…)<br>
 </li>
-<li class="fragment">The shape of the DataFrame impacts the compression.</li>
 <li class="fragment">Sorting the data and downcasting types can significantly reduce memory space.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<p><img data-src="figures/all_benchmarks.png"></p>
-</div><div class="column" style="width:50%;">
-<div title="Proposal">
+<div class="fragment" title="Proposal">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -644,13 +636,7 @@ Pablo Fraile
 <ul>
 <li class="fragment">Precompute static features.</li>
 <li class="fragment">Load data once into memory.</li>
-<li class="fragment">Save shared data in <strong>Apache Parquet</strong>:
-<ul>
-<li class="fragment">Fast to read<br>
-</li>
-<li class="fragment">Compact (&lt;45 MB)<br>
-</li>
-</ul></li>
+<li class="fragment">Save shared data in <strong>Apache Parquet</strong>.</li>
 <li class="fragment">Minimize queries to the database.<br>
 </li>
 </ul>
@@ -658,8 +644,6 @@ Pablo Fraile
 </div>
 </div>
 </div>
-<p><img data-src="figures/parquet_benchmark_df.png"></p>
-</div></div>
 </section>
 <section id="data-ingestion-mechanism" class="slide level2 smaller">
 <h2>Data Ingestion Mechanism</h2>
@@ -675,7 +659,7 @@ Pablo Fraile
 <p><strong>Mechanism</strong></p>
 </div>
 <div class="callout-content">
-<ol type="1">
+<ol start="0" type="1">
 <li class="fragment">Precalculate Dataframes</li>
 <li class="fragment">Read the Dataframes</li>
 <li class="fragment"><strong>CSV</strong> generation with features and the event column</li>
@@ -711,9 +695,8 @@ Pablo Fraile
 <p><img data-src="figures/architecture-1.png"></p>
 </div></div>
 </section>
-<section id="vectorized-computation" class="slide level2 smaller">
-<h2>Vectorized Computation</h2>
-<p>Exploit <strong>SIMD architectures</strong> and <strong>vectorized operations</strong>, inspired by <span class="citation" data-cites="baziotisDiasDynamicRewriting2024">Baziotis, Kang, and Mendis (<a href="#/references" role="doc-biblioref" onclick="">2024</a>)</span>.</p>
+<section id="code-optimizations" class="slide level2 smaller">
+<h2>Code Optimizations</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <h4 id="non-index-aware">Non-index-aware</h4>
@@ -740,7 +723,7 @@ Pablo Fraile
 </div>
 </div>
 </div></div>
-<h4 id="section"></h4>
+<h4 id="section-1"></h4>
 <div class="columns">
 <div class="column" style="width:70%;">
 <h4 id="using-isin">Using <code>isin()</code></h4>
@@ -778,16 +761,16 @@ Pablo Fraile
 <p><strong>Summary of Optimizations</strong></p>
 </div>
 <div class="callout-content">
-<p>The total reduction in time for the second step of the data ingestion is around <strong>52 ms</strong> per combination. For 79,931 combinations, this results in a total time of <strong>~4.1 hours</strong>.</p>
+<p>The total reduction in time is around <strong>52 ms</strong> per combination. For 79,931 combinations, this results in a total time of <strong>~4.1 hours</strong>.</p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="eliminating-communications" class="slide level2 smaller">
+<section id="eliminating-communications" class="slide level2 smaller" data-footer="false">
 <h2>Eliminating Communications</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:33%;">
 <div title="Problem">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -798,22 +781,7 @@ Pablo Fraile
 <p><strong>Problem</strong></p>
 </div>
 <div class="callout-content">
-<p>Disk I/O for inter-process communication (IPC) with R is a significant bottleneck. Traditional methods like pipes, sockets, shared memory, or message queues introduce considerable overhead.</p>
-</div>
-</div>
-</div>
-</div>
-<div title="Proposal">
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Proposal</strong></p>
-</div>
-<div class="callout-content">
-<p>Can we eliminate this IPC by performing the CoxPH analysis directly in Python?</p>
+<p>Disk I/O for inter-process communication (IPC) with R is a significant bottleneck.</p>
 </div>
 </div>
 </div>
@@ -859,39 +827,17 @@ Pablo Fraile
 </div>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="width:67%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figures/architecture-2.png" class="quarto-figure quarto-figure-center"></p>
 </figure>
 </div>
-<div title="Architecture">
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Architecture</strong></p>
-</div>
-<div class="callout-content">
-<ol type="1">
-<li class="fragment"><strong><code>get_cox_df</code></strong>: Reads Parquet files and computes combination-dependent columns.</li>
-<li class="fragment"><strong><code>calculate_cox_analysis</code></strong>: Calls the <code>CoxPHFitter</code> method from the <code>lifelines</code> package.</li>
-<li class="fragment"><strong><code>parse_cox_analysis</code></strong>: Generates a dictionary of the analysis results.</li>
-<li class="fragment"><strong><code>save_results</code></strong>: Writes the processed document to the database.</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
 </div></div>
 </section>
 <section id="multithreading" class="slide level2 smaller">
 <h2>Multithreading</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div title="Technical Insights">
+<div class="fragment" title="Technical Insights">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -904,68 +850,13 @@ Pablo Fraile
 <ol type="1">
 <li class="fragment">Processes outperform threads for CPU-bound tasks -&gt; <strong>Python’s Global Interpreter Lock (GIL)</strong> limits threads’ performance.</li>
 <li class="fragment">Memory usage is higher with processes, which can lead to out-of-memory errors if too many processes are spawned.</li>
+<li class="fragment">Threads are more efficient for <em>I/O-bound tasks</em>, allowing for <strong>faster startup</strong> and <strong>lower memory</strong> usage.</li>
 </ol>
 </div>
 </div>
 </div>
 </div>
-<div title="Benchmarking">
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Benchmarking</strong></p>
-</div>
-<div class="callout-content">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Count</th>
-<th>Threads (tasks/s)</th>
-<th>Processes (tasks/s)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>1.20</td>
-<td>1.1</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>1.50</td>
-<td>1.6</td>
-</tr>
-<tr class="odd">
-<td>4</td>
-<td>1.60</td>
-<td>1.9</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>1.60</td>
-<td>2.2</td>
-</tr>
-<tr class="odd">
-<td>16</td>
-<td>1.80</td>
-<td>2.3</td>
-</tr>
-<tr class="even">
-<td>32</td>
-<td>1.70</td>
-<td>Out of RAM</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div title="Hybrid Strategy">
+<div class="fragment" title="Hybrid Strategy">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -984,7 +875,7 @@ Pablo Fraile
 </div>
 </div>
 </div>
-<div title="Resource Calibration">
+<div class="fragment" title="Resource Calibration">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -999,7 +890,6 @@ Pablo Fraile
 </div>
 </div>
 </div>
-</div></div>
 </section>
 <section id="task-distribution" class="slide level2 smaller">
 <h2>Task distribution</h2>
@@ -1022,7 +912,6 @@ Pablo Fraile
 <li class="fragment"><strong>Task Queue</strong>: Distributes tasks to worker processes (rabbitmq).</li>
 <li class="fragment"><strong>Worker Processes</strong>: Can be configured to run on different machines, allowing for distributed computing.</li>
 <li class="fragment"><strong>Task Management</strong>: Each worker fetches tasks from the queue, processes them, and returns results to the main process.</li>
-<li class="fragment">This architecture allows for <strong>scalability</strong> and <strong>fault tolerance</strong>.</li>
 </ul>
 </div>
 </div>
@@ -1032,65 +921,68 @@ Pablo Fraile
 </section>
 <section id="deployment" class="slide level2 smaller">
 <h2>Deployment</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    %% ================= STYLING =================
-    classDef requirements fill:#E1F5FE,stroke:#0288D1,stroke-width:2px,color:#222,stroke-dasharray:0,font-size:16px
-    classDef kubernetes fill:#E8F5E9,stroke:#388E3C,stroke-width:2px,color:#222,font-size:16px
-    classDef benefits fill:#FFF3E0,stroke:#F57C00,stroke-width:2px,color:#222,stroke-dasharray:0,font-size:16px
-    classDef arrow stroke:#555,stroke-width:2px,arrowhead:vee
-    classDef subgraphTitle fill:#f5f5f5,stroke:none,color:#333,font-size:18px,font-weight:bold
-
-
-    %% ================= NODES =================
-    subgraph ProjectRequirements["Project Requirements"]
-        R1["Independent &lt;br&gt; Task Execution"]:::requirements
-        R2["Python-native &lt;br&gt; CoxPH"]:::requirements
-        R3["Persistent &lt;br&gt; Result Storage"]:::requirements
-        R4["High Throughput &lt;br&gt; Needs"]:::requirements
-        R5["Elastic &lt;br&gt; Resource Use"]:::requirements
-    end
-
-    subgraph Kubernetes["Kubernetes Capabilities"]
-        K1["Pods: Isolated &lt;br&gt; Task Containers"]:::kubernetes
-        K2["Job Scheduling &amp; &lt;br&gt; Resource Quotas"]:::kubernetes
-        K3["Persistent Volumes &lt;br&gt; (PVC + StorageClass)"]:::kubernetes
-        K4["Containerized &lt;br&gt; Python Environments"]:::kubernetes
-        K5["Horizontal Pod &lt;br&gt; Autoscaling (HPA)"]:::kubernetes
-        K6["Service Abstraction &amp; &lt;br&gt; Load Balancing"]:::kubernetes
-    end
-
-    subgraph Benefits["System Benefits"]
-        B1["Concurrent Execution &lt;br&gt; &amp; Isolation"]:::benefits
-        B2["Portable, Reproducible &lt;br&gt; Pipelines"]:::benefits
-        B3["Reliable Data Storage &lt;br&gt; &amp; Access"]:::benefits
-        B4["Elastic Scaling &lt;br&gt; by Load"]:::benefits
-        B5["Resource Efficiency &lt;br&gt; &amp; Cost Control"]:::benefits
-        B6["Operational &lt;br&gt; Resilience"]:::benefits
-    end
-
-    %% ================= CONNECTIONS =================
-    R1 --&gt;|matches| K1
-    R2 --&gt;|enabled by| K4
-    R3 --&gt;|satisfied by| K3
-    R4 --&gt;|handled by| K2
-    R5 --&gt;|achieved via| K5
-
-    K1 --&gt;|enables| B1
-    K4 --&gt;|provides| B2
-    K3 --&gt;|ensures| B3
-    K2 --&gt;|delivers| B4
-    K5 --&gt;|enables| B5
-    K6 --&gt;|supports| B6
-
-
-</pre>
+<div class="fragment" title="Requirements">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p></p></figure><p></p>
+<p><strong>Requirements</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li class="fragment"><strong>Independent combinations</strong> to process.</li>
+<li class="fragment"><strong>Scalable</strong> and <strong>reproducible</strong> execution.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div title="Rationale">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Rationale</strong></p>
+</div>
+<div class="callout-content">
+<table class="caption-top">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 39%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Traditional MPI Cluster</th>
+<th>Kubernetes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Resource Allocation</em></td>
+<td>Static (fixed per job)</td>
+<td>Dynamic (per-task)</td>
+</tr>
+<tr class="even">
+<td><em>Scaling</em></td>
+<td>Manual intervention required</td>
+<td>Auto-scaling (HPA + Cluster)</td>
+</tr>
+<tr class="odd">
+<td><em>Fault Tolerance</em></td>
+<td>Job fails if worker crashes</td>
+<td>Self-healing</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1109,25 +1001,23 @@ Pablo Fraile
 <div class="callout-content">
 <table class="caption-top">
 <colgroup>
+<col style="width: 16%">
+<col style="width: 22%">
 <col style="width: 13%">
-<col style="width: 19%">
-<col style="width: 11%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 10%">
-<col style="width: 14%">
-<col style="width: 13%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 17%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Cloud</th>
 <th style="text-align: left;">Instance type</th>
 <th style="text-align: left;">Coremark</th>
-<th style="text-align: left;">Count</th>
+<th style="text-align: left;">Workers</th>
 <th style="text-align: left;">vCPUs</th>
 <th style="text-align: left;">Tasks/s</th>
 <th style="text-align: left;">Total time</th>
-<th style="text-align: left;">Total cost</th>
 </tr>
 </thead>
 <tbody>
@@ -1139,7 +1029,6 @@ Pablo Fraile
 <td style="text-align: left;">4</td>
 <td style="text-align: left;">1.0</td>
 <td style="text-align: left;">22h 12min</td>
-<td style="text-align: left;">2.42 USD</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
@@ -1149,7 +1038,6 @@ Pablo Fraile
 <td style="text-align: left;">8</td>
 <td style="text-align: left;">1.9</td>
 <td style="text-align: left;">11h 41min</td>
-<td style="text-align: left;">2.54 USD</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
@@ -1159,19 +1047,8 @@ Pablo Fraile
 <td style="text-align: left;">16</td>
 <td style="text-align: left;">3.6</td>
 <td style="text-align: left;">06h 10min</td>
-<td style="text-align: left;">2.68 USD</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">6</td>
-<td style="text-align: left;">24</td>
-<td style="text-align: left;">5.9</td>
-<td style="text-align: left;">03h 45min</td>
-<td style="text-align: left;">2.46 USD</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -1179,17 +1056,6 @@ Pablo Fraile
 <td style="text-align: left;">32</td>
 <td style="text-align: left;">7.0</td>
 <td style="text-align: left;">03h 10min</td>
-<td style="text-align: left;">2.76 USD</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">c2-standard-4</td>
-<td style="text-align: left;">73269</td>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">16</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
@@ -1199,27 +1065,6 @@ Pablo Fraile
 <td style="text-align: left;">16</td>
 <td style="text-align: left;">17.0</td>
 <td style="text-align: left;">01h 18min</td>
-<td style="text-align: left;"><strong>2.06 USD</strong></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">AKS</td>
-<td style="text-align: left;">D2s_v3</td>
-<td style="text-align: left;">26323</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">F2s_v2</td>
-<td style="text-align: left;">35925</td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">3.8</td>
-<td style="text-align: left;">05h 50min</td>
-<td style="text-align: left;"><strong>1.90 USD</strong></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">On-premise</td>
@@ -1229,7 +1074,6 @@ Pablo Fraile
 <td style="text-align: left;">10</td>
 <td style="text-align: left;">0.4</td>
 <td style="text-align: left;">2d 7h 30min</td>
-<td style="text-align: left;">-</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
@@ -1239,7 +1083,6 @@ Pablo Fraile
 <td style="text-align: left;">20</td>
 <td style="text-align: left;">0.88</td>
 <td style="text-align: left;">1d 1h 13min</td>
-<td style="text-align: left;">-</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
@@ -1249,7 +1092,6 @@ Pablo Fraile
 <td style="text-align: left;">40</td>
 <td style="text-align: left;">2</td>
 <td style="text-align: left;">11h 6min</td>
-<td style="text-align: left;">-</td>
 </tr>
 </tbody>
 </table>
@@ -1260,65 +1102,66 @@ Pablo Fraile
 </section>
 <section id="conclusions" class="slide level2 smaller">
 <h2>Conclusions</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div title="Key Strategies">
+<div title="Key Optimizations">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Key Strategies</strong></p>
+<p><strong>Key Optimizations</strong></p>
 </div>
 <div class="callout-content">
 <ul>
-<li class="fragment"><p><strong>Data Schema Optimization</strong><br>
-Improved query speed and storage efficiency.</p></li>
-<li class="fragment"><p><strong>Smart Precomputation</strong><br>
-Reduced redundant work across combinations.</p></li>
-<li class="fragment"><p><strong>Vectorized Operations</strong><br>
-Exploited SIMD and memory locality for fast computation.</p></li>
+<li class="fragment"><p><strong>Schema Optimization</strong><br>
+Query-driven design and better deserialization.</p></li>
+<li class="fragment"><p><strong>Precomputation &amp; Storage</strong><br>
+Eliminated redundant calculations and migrated from CSV to Parquet for columnar efficiency.</p></li>
+<li class="fragment"><p><strong>Compute Efficiency and Communication Overhead</strong><br>
+Index-aware queries and optimized pipelines.</p></li>
+<li class="fragment"><p><strong>Parallel Execution</strong><br>
+Hybrid threading/multiprocessing to maximize resource utilization.</p></li>
+<li class="fragment"><p><strong>Distributed Scaling</strong><br>
+Kubernetes-orchestrated workers with queue-based load balancing.</p></li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
-<div title="Infrastructure Gains">
+<div class="fragment">
+<div title="Take Home Messages">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Infrastructure Gains</strong></p>
+<p><strong>Take Home Messages</strong></p>
 </div>
 <div class="callout-content">
 <ul>
-<li class="fragment"><p><strong>Containerization + Kubernetes</strong><br>
-Enabled scalable, reproducible, high-throughput execution.</p></li>
-<li class="fragment"><p><strong>Cloud Agility</strong><br>
-Demonstrated smooth migration and dynamic resource allocation.</p></li>
-<li class="fragment"><p><strong>From Months to Hours</strong><br>
-Showed how compute time dropped from 39 days to ~22 hours.</p></li>
+<li class="fragment"><strong>61 Days → ~Hours</strong><br>
+Computational throughput improved through systematic optimization.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-</div></div>
+</div>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-baziotisDiasDynamicRewriting2024" class="csl-entry" role="listitem">
-Baziotis, Stefanos, Daniel Kang, and Charith Mendis. 2024. <span>“Dias: <span>Dynamic Rewriting</span> of <span>Pandas Code</span>.”</span> <em>Proceedings of the ACM on Management of Data</em> 2 (1): 58:1–27. <a href="https://doi.org/10.1145/3639313">https://doi.org/10.1145/3639313</a>.
-</div>
 <div id="ref-florensamachine" class="csl-entry" role="listitem">
 Florensa Cazorla, Dı́dac. 2023. <span>“Machine Learning Approaches for Comprehensive Analysis of Population Cancer Registry Data.”</span>
+</div>
+<div id="ref-florensa2023diabetes" class="csl-entry" role="listitem">
+Florensa, Dı́dac, J Mateo, C Miret, S Godoy, and P Godoy. 2023. <span>“DIABETES, EXCESS WEIGHT, METFORMIN AND ASSOCIATION WITH PANCREAS CANCER.”</span> In <em>GACETA SANITARIA</em>, 37:S198–98. ELSEVIER 685 ROUTE 202-206, BRIDGEWATER, NJ 08807 USA.
+</div>
+<div id="ref-florensa2023low" class="csl-entry" role="listitem">
+Florensa, Dı́dac, Jordi Mateo, Francesc Solsona, Leonardo Galván, Miquel Mesas, Ramon Piñol, Leonardo Espinosa-Leal, and Pere Godoy. 2023. <span>“Low-Dose Acetylsalicylic Acid for Cancer Prevention Considering Risk Factors: A Retrospective Cohort Study.”</span> <em>Annals of Epidemiology</em> 84: 60–66.
 </div>
 </div>
 </section>
@@ -1326,7 +1169,7 @@ Florensa Cazorla, Dı́dac. 2023. <span>“Machine Learning Approaches for Compr
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-
+<p>Jornadas Sarteco 2025</p>
 </div>
 </div></div>
 
