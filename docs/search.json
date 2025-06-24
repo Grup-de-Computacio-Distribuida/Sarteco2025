@@ -42,18 +42,18 @@
     "text": "Memory Optimization\n\n\n\n\n\n\n\nFindings\n\n\n\nMost patient features are invariant across combinations (age, BMI, diabetes…)\n\nSorting the data and downcasting types can significantly reduce memory space.\n\n\n\n\n\n\n\n\n\n\n\n\nProposal\n\n\n\nPrecompute static features.\nLoad data once into memory.\nSave shared data in Apache Parquet.\nMinimize queries to the database."
   },
   {
-    "objectID": "index.html#data-ingestion-mechanism",
-    "href": "index.html#data-ingestion-mechanism",
+    "objectID": "index.html#upgrade",
+    "href": "index.html#upgrade",
     "title": "Optimizing Workflows in Distributed Systems",
-    "section": "Data Ingestion Mechanism",
-    "text": "Data Ingestion Mechanism\n\n\n\n\n\n\n\n\n\nMechanism\n\n\n\nPrecalculate Dataframes\nRead the Dataframes\nCSV generation with features and the event column\nCSV reading and data preprocessing\nCOXPH analysis (using a file as stdout)\nRead and parse the results\nSave structured results for later queries\n\n\n\n\n\n\n\n\n\n\n\n\nImprovements\n\n\n\nQuery-driven -&gt; Reduce time to get data.\nPrecalculate shared data -&gt; Avoid repeated queries.\nUse Parquet files -&gt; Efficient storage and fast access."
+    "section": "Upgrade",
+    "text": "Upgrade\n\n\n\n\n\n\n\n\n\nMechanism\n\n\n\nPrecalculate Dataframes\nRead the Dataframes\nCSV generation with features and the event column\nCSV reading and data preprocessing\nCOXPH analysis (using a file as stdout)\nRead and parse the results\nSave structured results for later queries\n\n\n\n\n\n\n\n\n\n\n\n\nImprovements\n\n\n\nQuery-driven -&gt; Reduce time to get data.\nPrecalculate shared data -&gt; Avoid repeated queries.\nUse Parquet files -&gt; Efficient storage and fast access."
   },
   {
     "objectID": "index.html#code-optimizations",
     "href": "index.html#code-optimizations",
     "title": "Optimizing Workflows in Distributed Systems",
-    "section": "Code Optimizations",
-    "text": "Code Optimizations\n\n\nNon-index-aware\ncancers_df[cancers_df[\"loc3\"] == \"C19\"]\nIndex-aware\ncancers_df.loc[(slice(None), \"C19\"), :]\n\n\n\n\n\n\n\n\nResults\n\n\n\nNon-index-aware: 1.86 ms\nIndex-aware: 247 μs\n\n\n\n\n\n\n\n\n\nUsing isin()\ncox_df[\"has_cancer\"] = cox_df.index.isin(with_cancer_df.index)\nUsing loc with prefill\ncox_df[\"has_cancer\"] = False\ncox_df.loc[with_cancer_df.index, \"has_cancer\"] = True\n\n\n\n\n\n\n\n\nResults\n\n\n\nUsing isin(): 3.25 ms\nUsing loc with prefill: 464 μs\n\n\n\n\n\n\n\n\n\n\n\n\n\nSummary of Optimizations\n\n\nThe total reduction in time is around 52 ms per combination. For 79,931 combinations, this results in a total time of ~1 hours."
+    "section": "Code Optimizations1",
+    "text": "Code Optimizations1\n\n\nNon-index-aware\ncancers_df[cancers_df[\"loc3\"] == \"C19\"]\nIndex-aware\ncancers_df.loc[(slice(None), \"C19\"), :]\n\n\n\n\n\n\n\n\nResults\n\n\n\nNon-index-aware: 1.86 ms\nIndex-aware: 247 μs\n\n\n\n\n\n\n\n\n\nUsing isin()\ncox_df[\"has_cancer\"] = cox_df.index.isin(with_cancer_df.index)\nUsing loc with prefill\ncox_df[\"has_cancer\"] = False\ncox_df.loc[with_cancer_df.index, \"has_cancer\"] = True\n\n\n\n\n\n\n\n\nResults\n\n\n\nUsing isin(): 3.25 ms\nUsing loc with prefill: 464 μs\n\n\n\n\n\n\n\n\n\n\n\n\n\nSummary of Optimizations\n\n\nThe total reduction in time is around 52 ms per combination. For 79,931 combinations, this results in a total time of ~1 hours.\n\n\n\n\nBaziotis, Kang, and Mendis (2024)"
   },
   {
     "objectID": "index.html#eliminating-communications",
@@ -81,7 +81,7 @@
     "href": "index.html#deployment",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "Deployment",
-    "text": "Deployment\n\n\n\n\n\n\n\nRequirements\n\n\n\nIndependent combinations to process.\nScalable and reproducible execution.\n\n\n\n\n\n\n\n\n\n\n\n\n\nRationale\n\n\n\n\n\n\n\n\n\n\nFeature\nTraditional MPI Cluster\nKubernetes\n\n\n\n\nResource Allocation\nStatic (fixed per job)\nDynamic (per-task)\n\n\nScaling\nManual intervention required\nAuto-scaling (HPA + Cluster)\n\n\nFault Tolerance\nJob fails if worker crashes\nSelf-healing"
+    "text": "Deployment\n\n\n\n\n\n\n\nRequirements\n\n\n\nIndependent combinations to process.\nScalable and reproducible execution.\n\n\n\n\n\n\n\n\n\n\n\n\n\nRationale1\n\n\n\n\n\n\n\n\n\n\nFeature\nTraditional MPI Cluster\nKubernetes\n\n\n\n\nResource Allocation\nStatic (fixed per job)\nDynamic (per-task)\n\n\nScaling\nManual intervention required\nAuto-scaling (HPA + Cluster)\n\n\nFault Tolerance\nJob fails if worker crashes\nSelf-healing\n\n\n\n\n\n\n\n\nTelenyk et al. (2021)"
   },
   {
     "objectID": "index.html#scalability",
@@ -102,6 +102,6 @@
     "href": "index.html#references",
     "title": "Optimizing Workflows in Distributed Systems",
     "section": "References",
-    "text": "References\n\n\n\n\nFlorensa Cazorla, Dı́dac. 2023. “Machine Learning Approaches for Comprehensive Analysis of Population Cancer Registry Data.”\n\n\nFlorensa, Dı́dac, J Mateo, C Miret, S Godoy, and P Godoy. 2023. “DIABETES, EXCESS WEIGHT, METFORMIN AND ASSOCIATION WITH PANCREAS CANCER.” In GACETA SANITARIA, 37:S198–98. ELSEVIER 685 ROUTE 202-206, BRIDGEWATER, NJ 08807 USA.\n\n\nFlorensa, Dı́dac, Jordi Mateo, Francesc Solsona, Leonardo Galván, Miquel Mesas, Ramon Piñol, Leonardo Espinosa-Leal, and Pere Godoy. 2023. “Low-Dose Acetylsalicylic Acid for Cancer Prevention Considering Risk Factors: A Retrospective Cohort Study.” Annals of Epidemiology 84: 60–66."
+    "text": "References\n\n\n\n\nBaziotis, Stefanos, Daniel Kang, and Charith Mendis. 2024. “Dias: Dynamic Rewriting of Pandas Code.” Proceedings of the ACM on Management of Data 2 (1): 58:1–27. https://doi.org/10.1145/3639313.\n\n\nFlorensa Cazorla, Dı́dac. 2023. “Machine Learning Approaches for Comprehensive Analysis of Population Cancer Registry Data.”\n\n\nFlorensa, Dı́dac, J Mateo, C Miret, S Godoy, and P Godoy. 2023. “DIABETES, EXCESS WEIGHT, METFORMIN AND ASSOCIATION WITH PANCREAS CANCER.” In GACETA SANITARIA, 37:S198–98. ELSEVIER 685 ROUTE 202-206, BRIDGEWATER, NJ 08807 USA.\n\n\nFlorensa, Dı́dac, Jordi Mateo, Francesc Solsona, Leonardo Galván, Miquel Mesas, Ramon Piñol, Leonardo Espinosa-Leal, and Pere Godoy. 2023. “Low-Dose Acetylsalicylic Acid for Cancer Prevention Considering Risk Factors: A Retrospective Cohort Study.” Annals of Epidemiology 84: 60–66.\n\n\nTelenyk, Sergii, Oleksii Sopov, Eduard Zharikov, and Grzegorz Nowakowski. 2021. “A Comparison of Kubernetes and Kubernetes-Compatible Platforms.” In 2021 11th IEEE International Conference on Intelligent Data Acquisition and Advanced Computing Systems: Technology and Applications (IDAACS), 313–17. Cracow, Poland: IEEE. https://doi.org/10.1109/IDAACS53288.2021.9660392."
   }
 ]

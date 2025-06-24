@@ -52,7 +52,6 @@ Develop an **optimized platform** that enables *high-quality data* for identifyi
 
 1. @florensa2023low -> Low-dose acetylsalicylic acid for cancer prevention
 2. @florensa2023diabetes -> Metformin and association with pancreas cancer
-
 :::
 
 . . .
@@ -215,7 +214,7 @@ How can we simultaneously minimize deserialization time and reduce query executi
 ::: columns
 ::: {.column width="40%" .fragment}
 
-::: {.callout-important title="Findings" .fragment}
+::: {.callout-important title="Findings"}
 - PyMongo returns Python dictionaries → slow for large result sets  
 - PyMongoArrow improves typing, but still memory-heavy  
 - Optimal performance requires **columnar layout with primitive types**
@@ -249,7 +248,7 @@ How can we simultaneously minimize deserialization time and reduce query executi
 :::
 
 
-## Data Ingestion Mechanism {.smaller}
+## Upgrade {.smaller}
 
 ::: columns
 ::: {.column width="35%"}
@@ -280,7 +279,7 @@ How can we simultaneously minimize deserialization time and reduce query executi
 :::
 
 
-## Code Optimizations {.smaller}
+## Code Optimizations^[@baziotisDiasDynamicRewriting2024] {.smaller}
 
 ::: columns
 ::: {.column width="70%"}
@@ -420,7 +419,7 @@ The hybrid approach allows *fine-tuned* calibration of threads and processes, ad
 
 . . .
 
-::: {.callout-caution title="Rationale"}
+::: {.callout-caution title="Rationale^[@telenykComparisonKubernetesKubernetesCompatible2021]"}
 
 | Feature               | Traditional MPI Cluster               | Kubernetes                          |
 |-----------------------|---------------------------------------|-------------------------------------|
@@ -478,4 +477,4 @@ The hybrid approach allows *fine-tuned* calibration of threads and processes, ad
 :::
 
 
-## References {.smaller}
+## References {.smaller footer=false}
