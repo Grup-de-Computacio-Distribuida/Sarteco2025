@@ -32,8 +32,6 @@ mermaid:
       theme: neutral
 ---
 
-## {background-image=figures/dcg.jpeg footer=false}
-
 ## Introduction {.smaller}
 
 ::: {.callout-tip title="Context"}
